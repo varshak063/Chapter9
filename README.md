@@ -1,10 +1,19 @@
-Class based components
+Custom hooks
+modularity:breaking code in to small pieces
 
-older way of creating components
+Reusability
+More Testable
+More maintainable
 
-life cycle of class component
-2 phase
-1)Render Phase : Constructor and render method is called
-=> once the DOM is Updated then 2nd phase is called
+Optimize app
 
-2.  COmmit Phase WHere componentDidMount will be called
+Creating smaller bundles of files known as chunking
+//Chunking
+//code splitting
+//Dynamic bundling
+//Lazy loading
+//Ondemand loading
+
+const grocery = lazy(()=>import(path of component))
+
+

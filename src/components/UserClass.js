@@ -19,7 +19,7 @@ export class UserClass extends Component {
     const data = await fetch("https://api.github.com/users");
     const json = await data.json();
     this.setState({ userInfo: json });
-    console.log(json);
+    // console.log(json);
   }
 
   render() {

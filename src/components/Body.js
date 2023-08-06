@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { RestaurantCard } from "./RestaurantCard";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
+import { useInternetCheck } from "../utils/useInternetCheck";
 export const Body = () => {
   //State Variable in React
   const [fakeRestroDataList, setFakeRestroDataList] = useState([]);
@@ -26,7 +27,10 @@ export const Body = () => {
     );
   };
   // console.log(fakeRestroDataList);
-
+  const isOnline = useInternetCheck();
+  if (isOnline === false) {
+    return <h1>Looks like offline please check network connection</h1>;
+  }
   return fakeRestroDataList?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -70,8 +74,8 @@ export const Body = () => {
         </div>
         <div className="restro-container">
           {filteredRestro?.map((items) => (
-            <Link to={"/restromenu/" + items?.info?.id}>
-              <RestaurantCard restoData={items?.info} key={items?.info?.id} />
+            <Link to={"/restromenu/" + items?.info?.id} key={items?.info?.id}>
+              <RestaurantCard restoData={items?.info} />
             </Link>
           ))}
         </div>

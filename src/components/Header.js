@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import { useInternetCheck } from "../utils/useInternetCheck";
 
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState("Login");
@@ -8,6 +9,7 @@ export const Header = () => {
   // useEffect(() => {
   //   console.log("useeffect called");
   // });
+  const isOnline = useInternetCheck();
   return (
     <>
       <div className="header">
@@ -16,6 +18,14 @@ export const Header = () => {
         </div>
         <div className="nav-items">
           <ul>
+            <li>
+              Online Status:
+              {isOnline === true ? (
+                <button className="online"></button>
+              ) : (
+                <button className="Offline"></button>
+              )}
+            </li>
             <Link to="/">
               <li>Home</li>
             </Link>
@@ -24,6 +34,9 @@ export const Header = () => {
             </Link>
             <Link>
               <li>Contact Us</li>
+            </Link>
+            <Link to="/grocery">
+              <li>Grocery</li>
             </Link>
             <Link>
               <li>Cart</li>

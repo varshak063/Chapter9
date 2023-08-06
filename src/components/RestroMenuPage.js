@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
 import { Shimmer } from "./Shimmer";
-import { CDN_URL, MENU_URL, RESTRO_URL } from "../utils/constants";
+import { CDN_URL, MENU_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import { useRestroMenuHook } from "../utils/useRestroMenuHook";
 
 export const RestroMenuPage = () => {
-  const [restromenuName, setRestroMenuName] = useState(null);
   //Extracting Restro ID using useParam HOOK
-  const {restroId} = useParams();
-  useEffect(() => {
-    fetchResrtoMenu();
-  }, []);
-  const fetchResrtoMenu = async () => {
-    const data = await fetch(`${RESTRO_URL + restroId}`);
-    const json = await data.json();
-    setRestroMenuName(json.data);
-    // console.log(json);
-  };
+  const { restroId } = useParams();
+  const restromenuName = useRestroMenuHook(restroId);
+
   if (restromenuName === null) return <Shimmer />;
-  
+
   const { name, cloudinaryImageId, city, cuisines } =
     restromenuName?.cards[0]?.card?.card?.info;
   const { itemCards } =
     restromenuName?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
-  console.log(itemCards);
 
   return (
     <>

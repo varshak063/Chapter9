@@ -117,6 +117,22 @@ button {
 .userscard img {
   width: 50px;
 }
+.online {
+  border: none;
+  background: green;
+  border-radius: 50px;
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+}
+.Offline {
+  border: none;
+  background-color: red;
+  border-radius: 50px;
+  width: 14px;
+  height: 14px;
+  margin: 5px;
+}
 .usercardinfo {
   background-color: #efefef;
   padding: 10px;
